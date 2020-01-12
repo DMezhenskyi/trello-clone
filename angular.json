@@ -5,12 +5,14 @@
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "lintFix": true
         }
       },
       "root": "apps/trello-clone",
       "sourceRoot": "apps/trello-clone/src",
-      "prefix": "trello-clone",
+      "prefix": "tc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
