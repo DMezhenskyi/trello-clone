@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "trello-clone": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/trello-clone",
+      "sourceRoot": "apps/trello-clone/src",
+      "prefix": "trello-clone",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/trello-clone",
+            "index": "apps/trello-clone/src/index.html",
+            "main": "apps/trello-clone/src/main.ts",
+            "polyfills": "apps/trello-clone/src/polyfills.ts",
+            "tsConfig": "apps/trello-clone/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/trello-clone/src/favicon.ico",
+              "apps/trello-clone/src/assets"
+            ],
+            "styles": ["apps/trello-clone/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/trello-clone/src/environments/environment.ts",
+                  "with": "apps/trello-clone/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "trello-clone:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "trello-clone:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "trello-clone:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/trello-clone/tsconfig.app.json",
+              "apps/trello-clone/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/trello-clone/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/trello-clone/jest.config.js",
+            "tsConfig": "apps/trello-clone/tsconfig.spec.json",
+            "setupFile": "apps/trello-clone/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "trello-clone-e2e": {
+      "root": "apps/trello-clone-e2e",
+      "sourceRoot": "apps/trello-clone-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/trello-clone-e2e/cypress.json",
+            "tsConfig": "apps/trello-clone-e2e/tsconfig.e2e.json",
+            "devServerTarget": "trello-clone:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "trello-clone:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/trello-clone-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/trello-clone-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "trello-clone"
+}
