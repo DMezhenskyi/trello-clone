@@ -11,9 +11,6 @@
     "nx.json": "*"
   },
   "projects": {
-    "trello-clone-e2e": {
-      "tags": []
-    },
     "trello-clone": {
       "tags": []
     }
