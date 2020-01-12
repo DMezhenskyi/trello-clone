@@ -6,6 +6,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../../environments/environment';
 import { reducers, metaReducers } from './';
+import * as fromTaskList from './entities/task-list/task-list.reducer';
+import * as fromTasks from './entities/tasks/tasks.reducer';
 
 @NgModule({
   declarations: [],
@@ -19,7 +21,12 @@ import { reducers, metaReducers } from './';
       }
     }),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature(
+      fromTaskList.taskListsFeatureKey,
+      fromTaskList.reducer
+    ),
+    StoreModule.forFeature(fromTasks.tasksFeatureKey, fromTasks.reducer)
   ]
 })
 export class RootStoreModule {}
