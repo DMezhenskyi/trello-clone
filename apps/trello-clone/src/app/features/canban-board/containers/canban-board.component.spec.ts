@@ -9,10 +9,10 @@ describe('CanbanBoardComponent', () => {
   let fixture: ComponentFixture<CanbanBoardComponent>;
   let store: Store<any>;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [ StoreModule.forRoot({}) ],
-      declarations: [ CanbanBoardComponent ]
+      imports: [StoreModule.forRoot({})],
+      declarations: [CanbanBoardComponent]
     });
 
     await TestBed.compileComponents();

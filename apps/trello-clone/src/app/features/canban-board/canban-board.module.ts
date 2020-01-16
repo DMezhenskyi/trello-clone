@@ -11,10 +11,13 @@ import { CanbanBoardRoutingModule } from './canban-board-routing.module';
   declarations: [CanbanBoardComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromCanbanBoard.canbanBoardFeatureKey, fromCanbanBoard.reducer),
+    StoreModule.forFeature(
+      fromCanbanBoard.canbanBoardFeatureKey,
+      fromCanbanBoard.reducer
+    ),
     EffectsModule.forFeature([CanbanBoardEffects]),
     CanbanBoardRoutingModule
   ],
   exports: [CanbanBoardComponent]
 })
-export class CanbanBoardModule { }
+export class CanbanBoardModule {}

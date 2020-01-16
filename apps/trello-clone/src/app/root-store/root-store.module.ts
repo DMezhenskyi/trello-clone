@@ -3,25 +3,25 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule, MinimalRouterStateSerializer, RouterState } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../../environments/environment';
 
-@NgModule( {
+@NgModule({
   declarations: [],
   imports: [
     CommonModule,
     metaReducers,
-    StoreModule.forRoot( reducers, {
+    StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
-        strictActionImmutability: true,
+        strictActionImmutability: true
       }
-    } ),
+    }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot( [] ),
-    StoreRouterConnectingModule.forRoot( { routerState: RouterState.Minimal } )
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal })
   ]
-} )
-export class RootStoreModule { }
+})
+export class RootStoreModule {}

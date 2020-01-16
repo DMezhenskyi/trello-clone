@@ -1,3 +1,4 @@
 <p>canban-board works!</p>
 <button (click)="onClick()">load it</button>
-<h1 *ngIf="isLoaded$ | async">And loaded</h1>
+<button (click)="onStop()">Stop to load it</button>
+<h1 *ngIf="isLoading$ | async">Is loading</h1>

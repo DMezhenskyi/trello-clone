@@ -4,20 +4,34 @@ import * as CanbanBoardActions from './canban-board.actions';
 export const canbanBoardFeatureKey = 'canbanBoard';
 
 export interface State {
-  isLoaded: boolean;
+  isLoading: boolean;
+  error: Error | null;
+  taskListIds: string[];
 }
 
 export const initialState: State = {
-  isLoaded: false
+  isLoading: false,
+  error: null,
+  taskListIds: []
 };
 
 const canbanBoardReducer = createReducer(
   initialState,
 
-  on(CanbanBoardActions.loadCanbanBoards, state => ({ ...state, isLoaded: !state.isLoaded })),
-  on(CanbanBoardActions.loadCanbanBoardsSuccess, (state, action) => state),
-  on(CanbanBoardActions.loadCanbanBoardsFailure, (state, action) => state),
-
+  on(CanbanBoardActions.loadCanbanBoards, state => ({
+    ...state,
+    isLoading: true
+  })),
+  on(CanbanBoardActions.loadCanbanBoardsSuccess, (state, { data }) => ({
+    ...state,
+    taskListIds: data,
+    isLoading: false
+  })),
+  on(CanbanBoardActions.loadCanbanBoardsFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
