@@ -7,6 +7,7 @@ import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../../environments/environment';
+import { EntityModule } from '../features/entity/entity.module';
 
 @NgModule({
   declarations: [],
@@ -21,7 +22,8 @@ import { environment } from '../../environments/environment';
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal })
+    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
+    EntityModule
   ]
 })
 export class RootStoreModule {}
