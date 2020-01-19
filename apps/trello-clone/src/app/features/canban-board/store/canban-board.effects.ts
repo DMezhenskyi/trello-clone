@@ -16,7 +16,11 @@ export class CanbanBoardEffects {
         of(null).pipe(
           flatMap(data => [
             TaskListActions.addTaskLists({
-              taskLists: [{ id: '1', name: 'To do' }, { id: '2', name: 'Done' }]
+              taskLists: [
+                { id: '1', name: 'To do' },
+                { id: '2', name: 'Doing' },
+                { id: '3', name: 'Done' }
+              ]
             }),
             CanbanBoardActions.loadCanbanBoardsSuccess({ data })
           ]),

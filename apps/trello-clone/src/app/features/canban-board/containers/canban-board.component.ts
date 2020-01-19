@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
 import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
 import * as canbanBoardsActions from '../store/canban-board.actions';
 import { AppState } from '../../../root-store/reducers';
@@ -20,17 +19,12 @@ export class CanbanBoardComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.dispatch(canbanBoardsActions.loadCanbanBoards());
     this.isLoading$ = this.store.pipe(select(selectIsCanbanBoardLoading));
     this.taskLists$ = this.store.pipe(select(selectTaskLists));
   }
 
-  onClick() {
-    this.store.dispatch(canbanBoardsActions.loadCanbanBoards());
-  }
-
-  onStop() {
-    this.store.dispatch(
-      canbanBoardsActions.loadCanbanBoardsSuccess({ data: [] })
-    );
+  trackByFn(index, { id }: TaskList) {
+    return id || index;
   }
 }

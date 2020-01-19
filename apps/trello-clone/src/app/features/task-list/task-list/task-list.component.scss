@@ -1,0 +1,19 @@
+$border-radius: 0.2rem;
+
+:host {
+  display: block;
+  border-radius: $border-radius;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.task-list {
+  &_header {
+    cursor: grab;
+  }
+  &_heading {
+    margin-bottom: 0.3rem;
+  }
+}

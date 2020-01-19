@@ -1,8 +1,9 @@
-<p>canban-board works!</p>
-<button (click)="onClick()">load it</button>
-<button (click)="onStop()">Stop to load it</button>
-<h1 *ngIf="isLoading$ | async">Is loading...</h1>
+<h1>Trello Board</h1>
 
-<div *ngFor="let taskList of taskLists$ | async">
-  {{ taskList.id }} | {{ taskList.name }}
-</div>
+<section class="task-board">
+  <tc-task-list
+    class="task-board_list"
+    *ngFor="let taskList of taskLists$ | async; trackBy: trackByFn"
+    [taskList]="taskList"
+  ></tc-task-list>
+</section>

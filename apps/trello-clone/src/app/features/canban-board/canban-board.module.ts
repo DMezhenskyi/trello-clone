@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CanbanBoardEffects } from './store/canban-board.effects';
 import { CanbanBoardComponent } from './containers/canban-board.component';
 import { CanbanBoardRoutingModule } from './canban-board-routing.module';
+import { TaskListModule } from '../task-list/task-list.module';
 
 @NgModule({
   declarations: [CanbanBoardComponent],
@@ -16,7 +17,8 @@ import { CanbanBoardRoutingModule } from './canban-board-routing.module';
       fromCanbanBoard.reducer
     ),
     EffectsModule.forFeature([CanbanBoardEffects]),
-    CanbanBoardRoutingModule
+    CanbanBoardRoutingModule,
+    TaskListModule
   ],
   exports: [CanbanBoardComponent]
 })

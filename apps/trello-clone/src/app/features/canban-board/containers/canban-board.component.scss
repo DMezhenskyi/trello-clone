@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+.task-board {
+  height: 50vh;
+  display: flex;
+  justify-content: space-between;
+
+  &_list {
+    width: 15rem;
+  }
+}
