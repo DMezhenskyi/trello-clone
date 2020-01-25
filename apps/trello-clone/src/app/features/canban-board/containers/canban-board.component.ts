@@ -5,6 +5,7 @@ import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
 import * as canbanBoardsActions from '../store/canban-board.actions';
 import { AppState } from '../../../root-store/reducers';
 import { TaskList, selectTaskLists } from '../../entity/task-list';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'tc-canban-board',
@@ -26,5 +27,10 @@ export class CanbanBoardComponent implements OnInit {
 
   trackByFn(index, { id }: TaskList) {
     return id || index;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+    console.log(event);
   }
 }

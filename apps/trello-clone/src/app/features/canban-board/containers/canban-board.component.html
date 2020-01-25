@@ -1,7 +1,15 @@
 <h1>Trello Board</h1>
 
-<section class="task-board">
+<section
+  #dragContainer
+  class="task-board"
+  cdkDropList
+  cdkDropListOrientation="horizontal"
+  (cdkDropListDropped)="drop($event)"
+>
   <tc-task-list
+    cdkDrag
+    [cdkDragBoundary]="dragContainer"
     class="task-board_list"
     *ngFor="let taskList of taskLists$ | async; trackBy: trackByFn"
     [taskList]="taskList"

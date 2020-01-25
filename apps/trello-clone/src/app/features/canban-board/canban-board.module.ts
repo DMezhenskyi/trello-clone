@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { StoreModule } from '@ngrx/store';
 import * as fromCanbanBoard from './store/canban-board.reducer';
 import { EffectsModule } from '@ngrx/effects';
@@ -18,7 +19,8 @@ import { TaskListModule } from '../task-list/task-list.module';
     ),
     EffectsModule.forFeature([CanbanBoardEffects]),
     CanbanBoardRoutingModule,
-    TaskListModule
+    TaskListModule,
+    DragDropModule
   ],
   exports: [CanbanBoardComponent]
 })
