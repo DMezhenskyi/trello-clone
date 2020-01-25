@@ -9,7 +9,9 @@ export interface State extends EntityState<TaskList> {
   // additional entities state properties
 }
 
-export const adapter: EntityAdapter<TaskList> = createEntityAdapter<TaskList>();
+export const adapter: EntityAdapter<TaskList> = createEntityAdapter<TaskList>({
+  sortComparer: (task, compareTask) => (task.order > compareTask.order ? 1 : -1)
+});
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties

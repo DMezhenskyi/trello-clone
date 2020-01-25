@@ -1,11 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
 import { Observable } from 'rxjs';
-import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
+
+import * as taskListActions from '../../entity/task-list/task-list.actions';
 import * as canbanBoardsActions from '../store/canban-board.actions';
+import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
 import { AppState } from '../../../root-store/reducers';
 import { TaskList, selectTaskLists } from '../../entity/task-list';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'tc-canban-board',
@@ -29,8 +32,14 @@ export class CanbanBoardComponent implements OnInit {
     return id || index;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-    // console.log(event);
+  drop({ previousIndex, currentIndex, item: { data } }: CdkDragDrop<string[]>) {
+    moveItemInArray(data, previousIndex, currentIndex);
+    const updatedEntities: Update<TaskList>[] = data.map(({ id }, index) => ({
+      id,
+      changes: { order: index }
+    }));
+    this.store.dispatch(
+      taskListActions.updateTaskLists({ taskLists: updatedEntities })
+    );
   }
 }
