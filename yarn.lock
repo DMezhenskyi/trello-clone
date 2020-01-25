@@ -1395,15 +1395,15 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@ngrx/effects@8.5.0":
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.5.0.tgz#cfccfc84fc91a1ead34f41dae9b0b99e227cb4da"
-  integrity sha512-Ac60DGM2rV4Xd9DONFuhStGZJMffQF+uL69pd1a144WPtfSWWBWzo5sHeZOKs7O9YmfqXiihs1DfCKmGaJOciw==
+"@ngrx/effects@^8.6.0":
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.6.0.tgz#a0d7339597a5128c5cf896ddcf93f73406a45860"
+  integrity sha512-JdyJLQbv/wnE0ZPY9DcDOtF9PzJuzsKWmIWgIGunHF18wdjk5O8Zpkcrxq18wDRL6geg5UTtNJRMvTQhpDbzow==
 
-"@ngrx/entity@8.5.0":
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-8.5.0.tgz#8e42ef02362939dd3d5b904767f47083d0efb754"
-  integrity sha512-3s/ULg43C8TPTTHPVwF2RS4/1xngZM9NbwfNARnS1jF/DN1EKh0R0z4OEq42016WsQm/qjGS7k4kq8OrJt6KIA==
+"@ngrx/entity@^8.6.0":
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/entity/-/entity-8.6.0.tgz#63e7875d0e83e552249b8b75bb9b6aba248cae2a"
+  integrity sha512-Qq+ANgsHd2/i7gam1j05hxA8kPWQyf5ewtCLlbtMJI/qLmvA6ruSE8PYNNwrt90wm4BWdks2zKE5ERzvPzto0w==
 
 "@ngrx/router-store@^8.6.0":
   version "8.6.0"
@@ -1420,10 +1420,10 @@
   resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-8.5.0.tgz#1e5cdeb7a0e212341f76a3764c79b8559b649cf0"
   integrity sha512-v3LPXb9KzK+CDySYBUGl9jxTwQ/mRrgE8cF4e2Fsl72GiBDuSY0ZGapM612hB6w0QMxm+NI50D/jRNwOMqjM2Q==
 
-"@ngrx/store@8.5.0":
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.5.0.tgz#4ee6c7d15db71aadc0aeafdd22ed4c18fb4a6fb5"
-  integrity sha512-PF+yi3CjRDkuJ7uPNW/2WAXSIs6iZHpC9RRnvbQ76D7c2qaq5AThnGGhPaB/tEuNZS0wv9z+0IoxeESJOe9jIg==
+"@ngrx/store@^8.6.0":
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.6.0.tgz#8540c5bd40b33fc2f443e7e86f47c0d801b8f413"
+  integrity sha512-K4cvCEa+5hw9qrETQWO+Cha3YbVCAT8yaIKJr/N35KntTL9mQMjoL+51JWLZfBwPV0e19CFgJIyrBnVUTxwr2A==
 
 "@ngtools/webpack@9.0.0-rc.10":
   version "9.0.0-rc.10"
