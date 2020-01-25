@@ -22,12 +22,14 @@
             "main": "apps/trello-clone/src/main.ts",
             "polyfills": "apps/trello-clone/src/polyfills.ts",
             "tsConfig": "apps/trello-clone/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/trello-clone/src/favicon.ico",
               "apps/trello-clone/src/assets"
             ],
-            "styles": ["apps/trello-clone/src/styles.scss"],
+            "styles": [
+              "apps/trello-clone/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -43,7 +45,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -86,7 +87,10 @@
               "apps/trello-clone/tsconfig.app.json",
               "apps/trello-clone/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/trello-clone/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/trello-clone/**"
+            ]
           }
         },
         "test": {
@@ -102,7 +106,8 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "analytics": false
   },
   "schematics": {
     "@nrwl/angular:application": {

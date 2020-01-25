@@ -31,6 +31,6 @@ export class CanbanBoardComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     // moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-    console.log(event);
+    // console.log(event);
   }
 }
