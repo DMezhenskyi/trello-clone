@@ -42,4 +42,5 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: mat-color(map-get($trello-clone-theme, primary));
 }

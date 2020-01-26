@@ -1,8 +1,10 @@
 :host {
   display: block;
   min-height: 100vh;
+  background-color: white;
 }
 .tc-root-container {
   padding: 2rem;
   box-sizing: border-box;
+  height: calc(100vh - 64px);
 }

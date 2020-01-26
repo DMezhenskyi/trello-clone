@@ -1,9 +1,19 @@
 @import '~@angular/material/theming';
 
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
 .task-board {
-  height: 50vh;
   display: flex;
   justify-content: space-between;
+  flex-grow: 1;
+
+  &_title {
+    margin-top: 0;
+  }
 
   &_list {
     width: 20rem;
