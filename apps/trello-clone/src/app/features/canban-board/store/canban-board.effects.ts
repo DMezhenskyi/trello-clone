@@ -4,7 +4,7 @@ import { catchError, flatMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import * as CanbanBoardActions from './canban-board.actions';
-import * as TaskListActions from '../../entity/task-list';
+import * as TaskListActions from '../../task-list/state/task-list.actions';
 
 @Injectable()
 export class CanbanBoardEffects {

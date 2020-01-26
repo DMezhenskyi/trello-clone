@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
     RootStoreModule,
     AppRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

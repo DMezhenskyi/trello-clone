@@ -1,4 +1,7 @@
 <div class="task-list_header">
   <h2 class="mat-h2 task-list_heading">{{ taskList.name }}</h2>
   <mat-divider></mat-divider>
+  <section class="task-list_content">
+    <tc-task *ngFor="let task of tasks$ | async" [task]="task"></tc-task>
+  </section>
 </div>

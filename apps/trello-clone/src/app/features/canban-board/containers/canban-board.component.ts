@@ -1,14 +1,15 @@
+import { addTask } from './../../task/state/task.actions';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Observable } from 'rxjs';
 
-import * as taskListActions from '../../entity/task-list/task-list.actions';
+import * as fromTaskList from '../../task-list/state';
+import * as fromTask from '../../task/state';
 import * as canbanBoardsActions from '../store/canban-board.actions';
 import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
 import { AppState } from '../../../root-store/reducers';
-import { TaskList, selectTaskLists } from '../../entity/task-list';
 
 @Component({
   selector: 'tc-canban-board',
@@ -18,28 +19,34 @@ import { TaskList, selectTaskLists } from '../../entity/task-list';
 })
 export class CanbanBoardComponent implements OnInit {
   isLoading$: Observable<boolean>;
-  taskLists$: Observable<TaskList[]>;
+  taskLists$: Observable<fromTaskList.TaskList[]>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store.dispatch(canbanBoardsActions.loadCanbanBoards());
     this.isLoading$ = this.store.pipe(select(selectIsCanbanBoardLoading));
-    this.taskLists$ = this.store.pipe(select(selectTaskLists));
+    this.taskLists$ = this.store.pipe(select(fromTaskList.selectTaskLists));
+
+    this.store.dispatch(
+      fromTask.addTask({ task: { id: '1', name: 'Test', taskListId: '1' } })
+    );
   }
 
-  trackByFn(index, { id }: TaskList) {
+  trackByFn(index, { id }: fromTaskList.TaskList) {
     return id || index;
   }
 
   drop({ previousIndex, currentIndex, item: { data } }: CdkDragDrop<string[]>) {
     moveItemInArray(data, previousIndex, currentIndex);
-    const updatedEntities: Update<TaskList>[] = data.map(({ id }, index) => ({
-      id,
-      changes: { order: index }
-    }));
+    const updatedEntities: Update<fromTaskList.TaskList>[] = data.map(
+      ({ id }, index) => ({
+        id,
+        changes: { order: index }
+      })
+    );
     this.store.dispatch(
-      taskListActions.updateTaskLists({ taskLists: updatedEntities })
+      fromTaskList.updateTaskLists({ taskLists: updatedEntities })
     );
   }
 }
