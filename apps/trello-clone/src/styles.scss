@@ -29,6 +29,8 @@ $trello-clone-theme: mat-light-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat-core-theme($trello-clone-theme);
+@include mat-input-theme($trello-clone-theme);
+@include mat-form-field-theme($trello-clone-theme);
 @include mat-toolbar-theme($trello-clone-theme);
 @include mat-card-theme($trello-clone-theme);
 @include mat-button-theme($trello-clone-theme);

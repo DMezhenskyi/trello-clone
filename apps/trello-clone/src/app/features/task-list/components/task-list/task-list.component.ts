@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { TaskList } from '../../state';
 import { AppState } from './../../../../root-store/reducers/index';
-import { Task, selectTasksForTaskList } from '../../../task/state';
+import * as fromTask from '../../../task/state';
 
 @Component({
   selector: 'tc-task-list',
@@ -22,13 +22,19 @@ export class TaskListComponent implements OnInit {
 
   @HostBinding('class.tc-task-list') classHost = true;
 
-  tasks$: Observable<Task[]>;
+  tasks$: Observable<fromTask.Task[]>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.tasks$ = this.store.pipe(
-      select(selectTasksForTaskList, { id: this.taskList.id })
+      select(fromTask.selectTasksForTaskList, { id: this.taskList.id })
     );
+  }
+
+  onTaskAdded(newTask: any) {
+    const { id } = this.taskList;
+    const task = { ...newTask, taskListId: id };
+    this.store.dispatch(fromTask.addTask({ task }));
   }
 }

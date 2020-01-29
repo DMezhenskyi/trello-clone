@@ -1,6 +1,10 @@
 <div class="task-list_header">
   <h2 class="mat-h2 task-list_heading">{{ taskList.name }}</h2>
   <mat-divider class="task-list_divider"></mat-divider>
+  <tc-create-task
+    class="task-list_create-form"
+    (addedTask)="onTaskAdded($event)"
+  ></tc-create-task>
   <section class="task-list_content">
     <tc-task *ngFor="let task of tasks$ | async" [task]="task"></tc-task>
   </section>

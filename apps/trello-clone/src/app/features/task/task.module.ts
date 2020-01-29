@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import * as fromTaskState from './state';
 import { TaskComponent } from './components/task/task.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [TaskComponent],
+  declarations: [TaskComponent, CreateTaskComponent],
   imports: [
     StoreModule.forFeature(
       fromTaskState.tasksFeatureKey,
       fromTaskState.reducer
     ),
-    MatCardModule,
-    MatButtonModule
+    SharedModule,
+    MatCardModule
   ],
-  exports: [TaskComponent]
+  exports: [TaskComponent, CreateTaskComponent]
 })
 export class TaskModule {}

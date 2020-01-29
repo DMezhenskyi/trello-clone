@@ -1,0 +1,19 @@
+<form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="create-task-field" appearance="outline">
+    <mat-label>Add new Task</mat-label>
+    <textarea
+      matInput
+      formControlName="taskName"
+      placeholder="Add new task"
+    ></textarea>
+    <mat-divider></mat-divider>
+    <button
+      class="create-task-button"
+      [disabled]="addTaskForm.invalid"
+      mat-raised-button
+      color="primary"
+    >
+      Add Task
+    </button>
+  </mat-form-field>
+</form>
