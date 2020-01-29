@@ -1,5 +1,6 @@
-import { createSelector, createFeatureSelector, props } from '@ngrx/store';
-import { tasksFeatureKey, adapter } from './task.reducer';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { tasksFeatureKey, adapter, State } from './task.reducer';
+import { Task } from './task.model';
 
 export const {
   selectIds,
@@ -8,7 +9,7 @@ export const {
   selectTotal
 } = adapter.getSelectors();
 
-const selectFeatureState = createFeatureSelector(tasksFeatureKey);
+const selectFeatureState = createFeatureSelector<State>(tasksFeatureKey);
 
 export const selectTasks = createSelector(
   selectFeatureState,
@@ -17,5 +18,6 @@ export const selectTasks = createSelector(
 
 export const selectTasksForTaskList = createSelector(
   selectTasks,
-  (tasks, props) => tasks.filter(task => task.id === props.id)
+  (tasks: Task[], properties: { id: string }) =>
+    tasks.filter(task => task.taskListId === properties.id)
 );

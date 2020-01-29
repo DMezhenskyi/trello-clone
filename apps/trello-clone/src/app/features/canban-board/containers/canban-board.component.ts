@@ -1,4 +1,3 @@
-import { addTask } from './../../task/state/task.actions';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
@@ -29,7 +28,36 @@ export class CanbanBoardComponent implements OnInit {
     this.taskLists$ = this.store.pipe(select(fromTaskList.selectTaskLists));
 
     this.store.dispatch(
-      fromTask.addTask({ task: { id: '1', name: 'Test', taskListId: '1' } })
+      fromTask.addTask({
+        task: {
+          id: '1',
+          name: 'Test',
+          taskListId: '1',
+          image: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
+        }
+      })
+    );
+    this.store.dispatch(
+      fromTask.addTask({
+        task: {
+          id: '2',
+          name: 'Test 2',
+          taskListId: '1',
+          image:
+            'https://www.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg'
+        }
+      })
+    );
+    this.store.dispatch(
+      fromTask.addTask({
+        task: {
+          id: '3',
+          name: 'Test 3',
+          taskListId: '2',
+          image:
+            'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2016/05/19091354/Weimaraner-puppy-outdoors-with-bright-blue-eyes.20190813165758508-1.jpg'
+        }
+      })
     );
   }
 

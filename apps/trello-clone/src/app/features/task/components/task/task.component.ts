@@ -1,4 +1,4 @@
-import { Task } from './../state/task.model';
+import { Task } from './../../state/task.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
