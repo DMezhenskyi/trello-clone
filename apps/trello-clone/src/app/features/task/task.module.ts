@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import { StoreModule } from '@ngrx/store';
 import * as fromTaskState from './state';
 import { TaskComponent } from './components/task/task.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { SharedModule } from '../../shared/shared.module';
+import { InputErrorStateMatcher } from './form/input-error-state.matcher';
 
 @NgModule({
   declarations: [TaskComponent, CreateTaskComponent],
@@ -16,6 +18,7 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule,
     MatCardModule
   ],
-  exports: [TaskComponent, CreateTaskComponent]
+  exports: [TaskComponent, CreateTaskComponent],
+  providers: [{ provide: ErrorStateMatcher, useClass: InputErrorStateMatcher }]
 })
 export class TaskModule {}

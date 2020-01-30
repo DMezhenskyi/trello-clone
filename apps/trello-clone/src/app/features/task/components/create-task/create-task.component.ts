@@ -7,7 +7,6 @@ import {
   Output
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 @Component({
   selector: 'tc-create-task',
   templateUrl: './create-task.component.html',
@@ -28,7 +27,7 @@ export class CreateTaskComponent implements OnInit {
 
   onSubmit() {
     this.addedTask.emit({
-      id: String(Date.now()),
+      id: Date.now().toString(),
       name: this.addTaskForm.controls.taskName.value,
       image:
         'https://www.edhat.com/sites/default/files/news_image/78607152_2415270235249886_7920458153873899520_n.jpg'
