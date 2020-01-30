@@ -1,7 +1,8 @@
 $border-radius: 0.2rem;
 
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: $border-radius;
   border-width: 1px;
   border-style: solid;
@@ -12,6 +13,10 @@ $border-radius: 0.2rem;
 .task-list {
   &_header {
     cursor: grab;
+  }
+  &_content {
+    flex-grow: 1;
+    overflow: auto;
   }
   &_heading {
     margin-bottom: 0.3rem;

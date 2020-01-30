@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';

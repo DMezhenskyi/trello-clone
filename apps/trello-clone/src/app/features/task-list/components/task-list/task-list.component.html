@@ -5,7 +5,7 @@
     class="task-list_create-form"
     (addedTask)="onTaskAdded($event)"
   ></tc-create-task>
-  <section class="task-list_content">
-    <tc-task *ngFor="let task of tasks$ | async" [task]="task"></tc-task>
-  </section>
 </div>
+<section class="task-list_content" cdkDropList>
+  <tc-task [task]="task" cdkDrag *ngFor="let task of tasks$ | async"></tc-task>
+</section>

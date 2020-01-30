@@ -48,3 +48,8 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: mat-color(map-get($trello-clone-theme, primary));
 }
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+  border: #999 dashed 0.3rem;
+}

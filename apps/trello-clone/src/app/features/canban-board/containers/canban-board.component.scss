@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  height: calc(100vh - 12rem);
 
   &_title {
     margin-top: 0;
