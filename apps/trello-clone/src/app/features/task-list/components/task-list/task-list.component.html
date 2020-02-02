@@ -9,11 +9,11 @@
 <section
   class="task-list_content"
   cdkDropList
-  [cdkDropListData]="taskList"
+  [cdkDropListData]="taskListData$ | async"
   (cdkDropListDropped)="drop($event)"
 >
   <tc-task
-    *ngFor="let task of tasks$ | async"
+    *ngFor="let task of tasks$ | async; trackBy: trackByFn"
     cdkDrag
     [task]="task"
     [cdkDragData]="task"

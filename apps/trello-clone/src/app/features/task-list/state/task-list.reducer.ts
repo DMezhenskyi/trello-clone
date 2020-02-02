@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
 import { TaskList } from './task-list.model';
 import * as TaskListActions from './task-list.actions';
 

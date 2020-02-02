@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Observable } from 'rxjs';
@@ -26,6 +26,7 @@ export class CanbanBoardComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(canbanBoardsActions.loadCanbanBoards());
+
     this.isLoading$ = this.store.pipe(select(selectIsCanbanBoardLoading));
     this.taskLists$ = this.store.pipe(select(fromTaskList.selectTaskLists));
 
@@ -75,9 +76,10 @@ export class CanbanBoardComponent implements OnInit {
     currentIndex,
     item: { data }
   }: CdkDragDrop<Task[]>): void {
+    moveItemInArray(data, previousIndex, currentIndex);
     this.store.dispatch(
       fromTaskList.updateTaskLists({
-        taskLists: reorderStoreEntities(data, { previousIndex, currentIndex })
+        taskLists: reorderStoreEntities(data)
       })
     );
   }
