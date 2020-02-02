@@ -30,7 +30,8 @@ export class CreateTaskComponent implements OnInit {
       id: Date.now().toString(),
       name: this.addTaskForm.controls.taskName.value,
       image:
-        'https://www.edhat.com/sites/default/files/news_image/78607152_2415270235249886_7920458153873899520_n.jpg'
+        'https://www.edhat.com/sites/default/files/news_image/78607152_2415270235249886_7920458153873899520_n.jpg',
+      order: 0
     });
     this.addTaskForm.reset();
   }

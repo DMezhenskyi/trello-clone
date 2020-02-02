@@ -19,7 +19,7 @@ export class CanbanBoardEffects {
               taskLists: [
                 { id: '1', name: 'To do', order: 0 },
                 { id: '2', name: 'Doing', order: 1 },
-                { id: '3', name: 'Done', order: 2 }
+                { id: '3', name: 'Done', order: 4 }
               ]
             }),
             CanbanBoardActions.loadCanbanBoardsSuccess({ data })

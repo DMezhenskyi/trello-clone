@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { Observable } from 'rxjs';
@@ -9,6 +9,8 @@ import * as fromTask from '../../task/state';
 import * as canbanBoardsActions from '../store/canban-board.actions';
 import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
 import { AppState } from '../../../root-store/reducers';
+import { Task } from '../../task/state';
+import { reorderStoreEntities } from '../../../shared/utils';
 
 @Component({
   selector: 'tc-canban-board',
@@ -33,7 +35,8 @@ export class CanbanBoardComponent implements OnInit {
           id: '1',
           name: 'Test',
           taskListId: '1',
-          image: 'https://material.angular.io/assets/img/examples/shiba2.jpg'
+          image: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+          order: 0
         }
       })
     );
@@ -44,7 +47,8 @@ export class CanbanBoardComponent implements OnInit {
           name: 'Test 2',
           taskListId: '1',
           image:
-            'https://www.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg'
+            'https://www.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg',
+          order: 1
         }
       })
     );
@@ -55,7 +59,8 @@ export class CanbanBoardComponent implements OnInit {
           name: 'Test 3',
           taskListId: '2',
           image:
-            'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2016/05/19091354/Weimaraner-puppy-outdoors-with-bright-blue-eyes.20190813165758508-1.jpg'
+            'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2016/05/19091354/Weimaraner-puppy-outdoors-with-bright-blue-eyes.20190813165758508-1.jpg',
+          order: 2
         }
       })
     );
@@ -65,16 +70,15 @@ export class CanbanBoardComponent implements OnInit {
     return id || index;
   }
 
-  drop({ previousIndex, currentIndex, item: { data } }: CdkDragDrop<string[]>) {
-    moveItemInArray(data, previousIndex, currentIndex);
-    const updatedEntities: Update<fromTaskList.TaskList>[] = data.map(
-      ({ id }, index) => ({
-        id,
-        changes: { order: index }
-      })
-    );
+  drop({
+    previousIndex,
+    currentIndex,
+    item: { data }
+  }: CdkDragDrop<Task[]>): void {
     this.store.dispatch(
-      fromTaskList.updateTaskLists({ taskLists: updatedEntities })
+      fromTaskList.updateTaskLists({
+        taskLists: reorderStoreEntities(data, { previousIndex, currentIndex })
+      })
     );
   }
 }

@@ -1,19 +1,18 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
 import { Task } from './task.model';
 import * as TaskActions from './task.actions';
 
 export const tasksFeatureKey = 'tasks';
 
-export interface State extends EntityState<Task> {
-  // additional entities state properties
-}
+export interface State extends EntityState<Task> {}
 
-export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>();
-
-export const initialState: State = adapter.getInitialState({
-  // additional entity state properties
+export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>({
+  sortComparer: (task, compareTask) => (task.order > compareTask.order ? 1 : -1)
 });
+
+export const initialState: State = adapter.getInitialState();
 
 const taskReducer = createReducer(
   initialState,

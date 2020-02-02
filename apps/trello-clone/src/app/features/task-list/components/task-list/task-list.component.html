@@ -6,6 +6,16 @@
     (addedTask)="onTaskAdded($event)"
   ></tc-create-task>
 </div>
-<section class="task-list_content" cdkDropList>
-  <tc-task [task]="task" cdkDrag *ngFor="let task of tasks$ | async"></tc-task>
+<section
+  class="task-list_content"
+  cdkDropList
+  [cdkDropListData]="taskList"
+  (cdkDropListDropped)="drop($event)"
+>
+  <tc-task
+    *ngFor="let task of tasks$ | async"
+    cdkDrag
+    [task]="task"
+    [cdkDragData]="task"
+  ></tc-task>
 </section>

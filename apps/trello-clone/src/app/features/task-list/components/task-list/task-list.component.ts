@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -7,9 +5,16 @@ import {
   HostBinding,
   OnInit
 } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+
 import { TaskList } from '../../state';
 import { AppState } from './../../../../root-store/reducers/index';
 import * as fromTask from '../../../task/state';
+import { Task } from '../../../task/state';
 
 @Component({
   selector: 'tc-task-list',
@@ -36,5 +41,16 @@ export class TaskListComponent implements OnInit {
     const { id } = this.taskList;
     const task = { ...newTask, taskListId: id };
     this.store.dispatch(fromTask.addTask({ task }));
+  }
+
+  drop(event: CdkDragDrop<Task>) {
+    const task: Update<fromTask.Task> = {
+      id: event.item.data.id,
+      changes: {
+        taskListId: event.container.data.id,
+        order: event.currentIndex
+      }
+    };
+    this.store.dispatch(fromTask.updateTask({ task }));
   }
 }

@@ -1,5 +1,3 @@
-export interface TaskList {
-  id: string;
-  name: string;
-  order: number;
-}
+import { Entity, Reordable } from './../../../shared/entity';
+
+export interface TaskList extends Entity, Reordable {}
