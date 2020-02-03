@@ -15,10 +15,22 @@ import { map } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 
 import { TaskList } from '../../state';
-import { AppState } from './../../../../root-store/reducers/index';
+import { AppState } from './../../../../root-store/reducers';
 import * as fromTask from '../../../task/state';
 import { Task } from '../../../task/state';
 import { reorderStoreEntities } from '../../../../shared/utils';
+
+interface DropListData {
+  id: string;
+  tasks: fromTask.Task[];
+}
+
+interface TransferData {
+  prevTaskList: DropListData;
+  currTaskList: DropListData;
+  previousIndex: number;
+  currentIndex: number;
+}
 
 @Component({
   selector: 'tc-task-list',
@@ -45,7 +57,7 @@ export class TaskListComponent implements OnInit {
     );
   }
 
-  onTaskAdded(newTask: any) {
+  onTaskAdded(newTask: Omit<Task, 'taskListId'>) {
     const { id } = this.taskList;
     const task = { ...newTask, taskListId: id };
     this.store.dispatch(fromTask.addTask({ task }));
@@ -61,7 +73,7 @@ export class TaskListComponent implements OnInit {
     container,
     previousContainer,
     item
-  }: CdkDragDrop<{ id: string; tasks: fromTask.Task[] }>) {
+  }: CdkDragDrop<DropListData>) {
     if (previousContainer.data.id === container.data.id) {
       moveItemInArray(container.data.tasks, previousIndex, currentIndex);
       this.store.dispatch(
@@ -70,12 +82,12 @@ export class TaskListComponent implements OnInit {
         })
       );
     } else {
-      this.transferTaskToAnotherList(
-        previousContainer.data,
-        container.data,
+      this.transferTaskToAnotherList({
+        prevTaskList: previousContainer.data,
+        currTaskList: container.data,
         previousIndex,
         currentIndex
-      );
+      });
       this.setNewListIdForTask({
         id: item.data.id,
         taskListId: container.data.id
@@ -83,17 +95,17 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  private transferTaskToAnotherList(
-    prevTaskList: { id: string; tasks: fromTask.Task[] },
-    currTaskList: { id: string; tasks: fromTask.Task[] },
-    prevIndex: number,
-    currIndex: number
-  ) {
+  private transferTaskToAnotherList({
+    prevTaskList,
+    currTaskList,
+    previousIndex,
+    currentIndex
+  }: TransferData) {
     transferArrayItem(
       prevTaskList.tasks,
       currTaskList.tasks,
-      prevIndex,
-      currIndex
+      previousIndex,
+      currentIndex
     );
     this.store.dispatch(
       fromTask.updateTasks({
