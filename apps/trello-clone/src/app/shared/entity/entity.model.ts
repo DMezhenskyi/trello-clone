@@ -1,4 +1,4 @@
-export interface TaskList {
+export interface Entity {
   id: string;
   name: string;
 }

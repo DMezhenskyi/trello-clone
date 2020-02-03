@@ -1,0 +1,10 @@
+<mat-card class="tc-task">
+  <mat-card-header>
+    <mat-card-title>{{ task.name }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="task.image" [alt]="task.name" />
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

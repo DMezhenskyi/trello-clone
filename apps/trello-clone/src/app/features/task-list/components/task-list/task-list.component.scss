@@ -1,0 +1,35 @@
+$border-radius: 0.2rem;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border-radius: $border-radius;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.task-list {
+  &_header {
+    cursor: grab;
+  }
+  &_content {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 0.1rem;
+  }
+  &_heading {
+    margin-bottom: 0.3rem;
+  }
+  &_divider {
+    margin-bottom: 1rem;
+  }
+  &_create-form {
+    margin-bottom: 1rem;
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+@mixin trello-clone-task-list-theme($theme) {
+  $background: map-get($theme, background);
+
+  .tc-task-list {
+    border-color: mat-color($background, focused-button);
+    background-color: mat-color($background, background);
+    &:nth-child(2) {
+      background-color: mat-color($background, card);
+    }
+  }
+}

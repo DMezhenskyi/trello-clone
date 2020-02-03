@@ -1,32 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 
+import { reducers, metaReducers } from './reducers';
 import { environment } from '../../environments/environment';
-import { reducers, metaReducers } from './';
-import * as fromTaskList from './entities/task-list/task-list.reducer';
-import * as fromTasks from './entities/tasks/tasks.reducer';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    metaReducers,
     StoreModule.forRoot(reducers, {
-      metaReducers,
       runtimeChecks: {
-        strictActionImmutability: true,
-        strictStateImmutability: true
+        strictStateImmutability: true,
+        strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreModule.forFeature(
-      fromTaskList.taskListsFeatureKey,
-      fromTaskList.reducer
-    ),
-    StoreModule.forFeature(fromTasks.tasksFeatureKey, fromTasks.reducer)
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal })
   ]
 })
 export class RootStoreModule {}

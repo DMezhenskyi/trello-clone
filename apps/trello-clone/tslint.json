@@ -2,6 +2,6 @@
   "extends": "../../tslint.json",
   "rules": {
     "directive-selector": [true, "attribute", "trelloClone", "camelCase"],
-    "component-selector": [true, "element", "trello-clone", "kebab-case"]
+    "component-selector": [true, "element", "tc", "kebab-case"]
   }
 }
