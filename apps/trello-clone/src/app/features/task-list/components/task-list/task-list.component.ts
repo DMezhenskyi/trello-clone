@@ -14,11 +14,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 
-import { TaskList } from '../../state';
-import { AppState } from './../../../../root-store/reducers';
-import * as fromTask from '../../../task/state';
-import { Task } from '../../../task/state';
-import { reorderStoreEntities } from '../../../../shared/utils';
+import * as fromTask from '@feature/task/state';
+import { reorderStoreEntities } from '@shared/utils';
+import { TaskList } from '@feature/task-list/state';
+import { AppState } from '@root-store/reducers';
 
 interface DropListData {
   id: string;
@@ -57,13 +56,13 @@ export class TaskListComponent implements OnInit {
     );
   }
 
-  onTaskAdded(newTask: Omit<Task, 'taskListId'>) {
+  onTaskAdded(newTask: Omit<fromTask.Task, 'taskListId'>) {
     const { id } = this.taskList;
     const task = { ...newTask, taskListId: id };
     this.store.dispatch(fromTask.addTask({ task }));
   }
 
-  trackByFn(index: number, { id }: Task): string | number {
+  trackByFn(index: number, { id }: fromTask.Task): string | number {
     return id || index;
   }
 
@@ -117,7 +116,7 @@ export class TaskListComponent implements OnInit {
   private setNewListIdForTask({
     id,
     taskListId
-  }: Pick<Task, 'id' | 'taskListId'>) {
+  }: Pick<fromTask.Task, 'id' | 'taskListId'>) {
     this.store.dispatch(
       fromTask.updateTask({
         task: {

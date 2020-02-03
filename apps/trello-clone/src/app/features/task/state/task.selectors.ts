@@ -2,12 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { tasksFeatureKey, adapter, State } from './task.reducer';
 import { Task } from './task.model';
 
-export const {
-  selectIds,
-  selectEntities,
-  selectAll,
-  selectTotal
-} = adapter.getSelectors();
+export const { selectAll } = adapter.getSelectors();
 
 const selectFeatureState = createFeatureSelector<State>(tasksFeatureKey);
 

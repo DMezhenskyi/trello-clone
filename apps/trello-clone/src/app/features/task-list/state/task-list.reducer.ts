@@ -16,34 +16,12 @@ export const initialState: State = adapter.getInitialState();
 
 const taskListReducer = createReducer(
   initialState,
-  on(TaskListActions.addTaskList, (state, action) =>
-    adapter.addOne(action.taskList, state)
-  ),
-  on(TaskListActions.upsertTaskList, (state, action) =>
-    adapter.upsertOne(action.taskList, state)
-  ),
   on(TaskListActions.addTaskLists, (state, action) =>
     adapter.addMany(action.taskLists, state)
   ),
-  on(TaskListActions.upsertTaskLists, (state, action) =>
-    adapter.upsertMany(action.taskLists, state)
-  ),
-  on(TaskListActions.updateTaskList, (state, action) =>
-    adapter.updateOne(action.taskList, state)
-  ),
   on(TaskListActions.updateTaskLists, (state, action) =>
     adapter.updateMany(action.taskLists, state)
-  ),
-  on(TaskListActions.deleteTaskList, (state, action) =>
-    adapter.removeOne(action.id, state)
-  ),
-  on(TaskListActions.deleteTaskLists, (state, action) =>
-    adapter.removeMany(action.ids, state)
-  ),
-  on(TaskListActions.loadTaskLists, (state, action) =>
-    adapter.addAll(action.taskLists, state)
-  ),
-  on(TaskListActions.clearTaskLists, state => adapter.removeAll(state))
+  )
 );
 
 export function reducer(state: State | undefined, action: Action) {

@@ -1,12 +1,11 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '@shared/shared.module';
 import * as fromTaskState from './state';
 import { TaskComponent } from './components/task/task.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
-import { SharedModule } from '../../shared/shared.module';
 import { InputErrorStateMatcher } from './form/input-error-state.matcher';
 
 @NgModule({

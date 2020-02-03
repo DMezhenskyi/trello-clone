@@ -1,16 +1,15 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store, select } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
 import { Observable } from 'rxjs';
 
+import { AppState } from '@root-store/reducers';
+import { Task } from '@feature/task/state';
+import { reorderStoreEntities } from '@shared/utils';
 import * as fromTaskList from '../../task-list/state';
 import * as fromTask from '../../task/state';
 import * as canbanBoardsActions from '../store/canban-board.actions';
 import { selectIsCanbanBoardLoading } from '../store/canban-board.selectors';
-import { AppState } from '../../../root-store/reducers';
-import { Task } from '../../task/state';
-import { reorderStoreEntities } from '../../../shared/utils';
 
 @Component({
   selector: 'tc-canban-board',
